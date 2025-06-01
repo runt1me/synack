@@ -1,11 +1,12 @@
 #!/bin/bash
+### Set alt+right click to resize windows ###
 gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier '<Alt>'
 gsettings set org.gnome.desktop.wm.preferences resize-with-right-button true
 
+### Powerline setup ###
 add-apt-repository universe
 apt install --yes powerline
 
-# Define the lines to add to .bashrc
 lines="# Powerline configuration
 if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
   powerline-daemon -q
@@ -14,7 +15,6 @@ if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
   source /usr/share/powerline/bindings/bash/powerline.sh
 fi"
 
-# Check if the lines are already in .bashrc to avoid duplication
 if ! grep -Fxq "$lines" ~/.bashrc; then
     echo "$lines" >> ~/.bashrc
     echo "Powerline configuration added to .bashrc."
